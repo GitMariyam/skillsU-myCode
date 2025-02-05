@@ -1,33 +1,50 @@
 import random as diceroll
 
-# Python function to prompt and return users guess
-def getUserGuess ():
-    userGuess = int(input ("what do you think the dice rolled value is from (1 to 6) ?"))
-    # What could go potentionally wrong here?
-    if not (1 <= userGuess <= 6):
-        print("Wrong value: Please enter a number between 1 and 6.")
-    else:
-        return userGuess
+# Python function to prompt and return user's guess with input validation
+def getUserGuess(lower_bound, upper_bound):
+    while True:
+        try:
+            # Prompt the user for a guess
+            userGuess = int(input(f"Guess the dice roll value ({lower_bound} to {upper_bound}): "))
+            
+            # Check if the guess is within the valid range
+            if userGuess < lower_bound or userGuess > upper_bound:
+                print(f"Please enter a number between {lower_bound} and {upper_bound}.")
+            else:
+                return userGuess  # Exit the loop if the input is valid
 
+        except ValueError:
+            print("Invalid input. Please enter a valid integer.")
 
-############################## MAIN application code ######################
-# Simulate a dice being rolled, random result bwtween 1 to 6 (inclusive)
+# ############################## MAIN application code ######################
+# Simulate a dice being rolled, random result between 1 to 6 (inclusive)
 ###########################################################################
-randomDiceRollResult = diceroll.randint(1,6)
+lower_bound = 1
+upper_bound = 100
+randomDiceRollResult = diceroll.randint(lower_bound, upper_bound)
 
-#print (f"The answer is: {randomDiceRollResult}")
+# Set the maximum number of allowed guesses
+max_trials = 5
 
-#yourGuess= -1
-while (randomDiceRollResult != yourGuess ):
+yourGuess = -1
+attempts = 0
+
+print(f"Welcome to the Dice Guessing Game!")
+print(f"Guess the number between {lower_bound} and {upper_bound}.")
+
+# Game loop with maximum attempts
+while attempts < max_trials:
+    attempts += 1
+    yourGuess = getUserGuess(lower_bound, upper_bound)
     
-    yourGuess = getUserGuess()
-
-    if (yourGuess == randomDiceRollResult):
-        print ("correct .. You win!")
-        break
+    if yourGuess == randomDiceRollResult:
+        print("Congratulations its a correct guess ! You win!")
+        break  # Exit the loop if the guess is correct
     else:
-        print ("nope!, try again")
-
-# How could I give the user a max of 5 tries only for a bigger range of numbers like 1 to 100?
-# How would I hint to the user that their guess should be lower or higher?
-# How do I allow the user to give up and ask for the answer?
+        print("Wrong guess! Try harder.")
+        
+        
+    
+# If the user reaches the max attempts without guessing correctly
+if yourGuess != randomDiceRollResult:
+    print(f"Sorry, you've used all {max_trials} attempts. The correct number was {randomDiceRollResult}.")
