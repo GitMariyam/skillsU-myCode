@@ -4,3 +4,6 @@ Player has 5 attempts to make and hint is provided to help player guess with hig
 after two attempts player is prompted whether he/she wants to quit the game if not he/she can continue playing till consumes all 5 attempts
 
 coding is done in a flexiable manner allowing any sort of modification to guessing range / number of attempts
+
+## How to run the game
+type in your terminal python3 myDice.py and follow prompts on screen
