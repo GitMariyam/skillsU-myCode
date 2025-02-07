@@ -17,7 +17,7 @@ def getUserGuess(lower_bound, upper_bound):
             print("Invalid input. Please enter a valid integer.")
 
 # ############################## MAIN application code ######################
-# Simulate a dice being rolled, random result between 1 to 6 (inclusive)
+# Simulate a dice being rolled, random result between 1 to 100 (inclusive)
 ###########################################################################
 lower_bound = 1
 upper_bound = 100
@@ -41,7 +41,11 @@ while attempts < max_trials:
         print("Congratulations its a correct guess ! You win!")
         break  # Exit the loop if the guess is correct
     else:
-        print("Wrong guess! Try harder.")
+        # Provide a hint based on the guess
+        if yourGuess < randomDiceRollResult:
+            print("Wrong guess! Try a higher number.")
+        elif yourGuess > randomDiceRollResult:
+            print("Wrong guess! Try a lower number.")
         
         
     
