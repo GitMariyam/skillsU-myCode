@@ -1,4 +1,6 @@
 import random as diceroll
+import sys
+
 
 # Python function to prompt and return user's guess with input validation
 def getUserGuess(lower_bound, upper_bound):
@@ -40,7 +42,7 @@ while attempts < max_trials:
     
     if yourGuess == randomDiceRollResult:
         print("Congratulations its a correct guess ! You win!")
-        break  # Exit the loop if the guess is correct
+        sys.exit(0)  # Exit the loop if the guess is correct
     else:
         # Provide a hint based on the guess
         if yourGuess < randomDiceRollResult:
@@ -53,7 +55,7 @@ while attempts < max_trials:
             give_up = input("Do you want to give up and know the correct answer? (yes/no): ").strip().upper()
             if give_up == "YES":
                 print(f"The correct number was {randomDiceRollResult}. Better luck next time!")
-                break
+                sys.exit(0)
 
 # If the user reaches the max attempts without guessing correctly
 if yourGuess != randomDiceRollResult and attempts == max_trials:
